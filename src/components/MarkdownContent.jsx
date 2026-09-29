@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import publicUrl from '../utils/publicUrl'
 
 function CodeBlock({ className, children }) {
   const match = /language-([^:]+)(?::(.+))?/.exec(className ?? '')
@@ -14,9 +15,9 @@ function CodeBlock({ className, children }) {
   return (
     <div className="code-window" aria-label={`${language} code sample`}>
       <div className="window-header">
-        <img className="window-dot" src="/assets/dot-red.svg" alt="" />
-        <img className="window-dot" src="/assets/dot-yellow.svg" alt="" />
-        <img className="window-dot" src="/assets/dot-green.svg" alt="" />
+        <img className="window-dot" src={publicUrl('/assets/dot-red.svg')} alt="" />
+        <img className="window-dot" src={publicUrl('/assets/dot-yellow.svg')} alt="" />
+        <img className="window-dot" src={publicUrl('/assets/dot-green.svg')} alt="" />
         <span className="window-filename">{filename}</span>
       </div>
       <pre className="code-content">
@@ -52,12 +53,13 @@ export default function MarkdownContent({ source }) {
 
   useEffect(() => {
     const controller = new AbortController()
+    const contentUrl = publicUrl(source)
     setContent('')
     setError('')
 
-    fetch(source, { signal: controller.signal })
+    fetch(contentUrl, { signal: controller.signal })
       .then((response) => {
-        if (!response.ok) throw new Error(`Unable to load ${source}.`)
+        if (!response.ok) throw new Error(`Unable to load ${contentUrl}.`)
         return response.text()
       })
       .then(setContent)

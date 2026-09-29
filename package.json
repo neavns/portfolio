@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "lint": "prettier --check --ignore-unknown .",
     "lint:fix": "prettier --write --ignore-unknown ."

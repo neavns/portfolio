@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import ImageCarousel from '../components/ImageCarousel'
 import MarkdownContent from '../components/MarkdownContent'
 import projects from '../data/projects.json'
+import publicUrl from '../utils/publicUrl'
 
 export default function ProjectPage() {
   const { name } = useParams()
@@ -59,10 +60,10 @@ export default function ProjectPage() {
                 controls
                 playsInline
                 preload="metadata"
-                poster={project.video.poster}
+                poster={publicUrl(project.video.poster)}
                 aria-label={project.video.title}
               >
-                <source src={project.video.src} type={project.video.type} />
+                <source src={publicUrl(project.video.src)} type={project.video.type} />
                 Your browser does not support embedded video.
               </video>
               {project.video.caption && <figcaption>{project.video.caption}</figcaption>}
@@ -75,7 +76,12 @@ export default function ProjectPage() {
             <h2 className="markdown-section-heading" id="screenshots-title">
               Screenshots
             </h2>
-            <ImageCarousel images={project.images} />
+            <ImageCarousel
+              images={project.images.map((image) => ({
+                ...image,
+                src: publicUrl(image.src),
+              }))}
+            />
           </section>
         )}
 
