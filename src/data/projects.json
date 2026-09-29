@@ -1,0 +1,157 @@
+[
+  {
+    "name": "prd-analyser",
+    "title": "PRD Analyser",
+    "type": "professional",
+    "date": "",
+    "order": 1,
+    "summary": "A production agentic workflow that turns product requirements into structured engineering work using organizational and codebase context.",
+    "description": "A multi-stage AI system that analyses Confluence PRDs, identifies requirements and affected services, retrieves relevant context, and proposes Jira epics and stories with human review built into the workflow.",
+    "markdown": "/content/projects/prd-analyser.md",
+    "images": [],
+    "tags": [
+      "Python",
+      "AI",
+      "Human-in-the-loop",
+      "Agent Orchestration",
+      "LangGraph",
+      "PostgreSQL",
+      "React"
+    ]
+  },
+  {
+    "name": "release-automator",
+    "title": "Release Automator",
+    "type": "professional",
+    "date": "",
+    "order": 3,
+    "summary": "A Slack-based release workflow that grew from a one-team side project to regular use by roughly 75% of engineering teams.",
+    "description": "An internal automation service that coordinates Jira release tickets, merge requests, deployment metadata, and tagged GitLab releases through a guided Slack workflow.",
+    "markdown": "/content/projects/release-automator.md",
+    "images": [],
+    "tags": ["Node.js", "Slack API", "GitLab", "Jira", "Dynatrace"]
+  },
+  {
+    "name": "incentives",
+    "title": "Incentives Experimentation Platform",
+    "type": "professional",
+    "date": "",
+    "order": 4,
+    "summary": "A campaign and experimentation platform for testing targeted customer incentives and data-science-driven conversion strategies.",
+    "description": "A platform for managing incentive campaigns, allocating rewards, tracking outcomes, and running experiments across targeting models and incentive values.",
+    "markdown": "/content/projects/incentives.md",
+    "images": [],
+    "tags": [".NET", "MongoDB", "Kafka", "A/B Testing"]
+  },
+  {
+    "name": "recommendations",
+    "title": "Recommendation Delivery System",
+    "type": "professional",
+    "date": "",
+    "order": 2,
+    "summary": "A streaming ingestion and delivery system that processes tens of millions of weekly recommendations within a 24-hour window.",
+    "description": "A two-service architecture that streams 20-30GB recommendation datasets from S3 into MongoDB and serves grouped, customer-specific results through a read-only API.",
+    "markdown": "/content/projects/recommendations.md",
+    "images": [],
+    "tags": ["Node.js", "MongoDB", "AWS S3", "Data Streaming"]
+  },
+  {
+    "name": "nocturn",
+    "title": "Nocturn",
+    "type": "personal",
+    "date": "",
+    "order": 5,
+    "summary": "An AI night-out planner that grounds personalized itineraries in real venues, live events, location constraints, and user preferences.",
+    "description": "A web-first planning product that turns natural-language requests into practical night-out itineraries through intent extraction, real-world retrieval, semantic ranking, and iterative refinement.",
+    "markdown": "/content/projects/nocturn.md",
+    "images": [
+      {
+        "src": "/assets/nocturn/nocturn-1.png",
+        "alt": "Nocturn landing page asking the user what kind of night out they want",
+        "caption": "Plan Your Night",
+        "detail": "Prompt-driven planning"
+      },
+      {
+        "src": "/assets/nocturn/nocturn-2.png",
+        "alt": "Nocturn itinerary displayed alongside venue locations on a map of London",
+        "caption": "Generated Itinerary",
+        "detail": "Map and venue timeline"
+      },
+      {
+        "src": "/assets/nocturn/nocturn-3.png",
+        "alt": "Nocturn dialog for sharing an itinerary through a read-only link",
+        "caption": "Shareable Plans",
+        "detail": "Read-only link sharing"
+      },
+      {
+        "src": "/assets/nocturn/nocturn-4.png",
+        "alt": "Shared Nocturn itinerary with a route map and venue details",
+        "caption": "Shared Itinerary",
+        "detail": "Read-only plan view"
+      }
+    ],
+    "video": {
+      "src": "/assets/nocturn/demo.mp4",
+      "type": "video/mp4",
+      "poster": "/assets/nocturn/nocturn-1.png",
+      "title": "Nocturn product demo",
+      "caption": "Generating, exploring, refining, and sharing a night-out itinerary."
+    },
+    "tags": ["AI", "React", "Vite", "Node.js", "Express", "Supabase", "pgvector", "LLMs"]
+  },
+  {
+    "name": "drivicon",
+    "title": "Drivicon",
+    "type": "personal",
+    "date": "",
+    "order": 6,
+    "summary": "An offline, cross-platform driving-theory app supporting practice, mock tests, progress tracking, and more than ten languages.",
+    "description": "A multilingual Flutter application that keeps its learning experience on-device, using a normalized translation model and optimized SQLite ingestion across iOS and Android.",
+    "markdown": "/content/projects/drivicon.md",
+    "images": [
+      {
+        "src": "/assets/drivicon/drivicon-1.png",
+        "alt": "Drivicon home screen with mock tests, practice questions, progress, and road signs",
+        "caption": "Learning Dashboard",
+        "detail": "Practice tools and mock tests"
+      },
+      {
+        "src": "/assets/drivicon/drivicon-2.png",
+        "alt": "Drivicon driving theory question translated into Romanian",
+        "caption": "Multilingual Practice",
+        "detail": "Localized questions and answers"
+      },
+      {
+        "src": "/assets/drivicon/drivicon-3.png",
+        "alt": "Drivicon mock test result showing a score of ninety percent",
+        "caption": "Mock Test Results",
+        "detail": "Immediate score feedback"
+      },
+      {
+        "src": "/assets/drivicon/drivicon-4.png",
+        "alt": "Drivicon corrections screen listing correct and incorrect answers",
+        "caption": "Answer Review",
+        "detail": "Post-test corrections"
+      },
+      {
+        "src": "/assets/drivicon/drivicon-5.png",
+        "alt": "Drivicon progress screen charting practice and mock test scores",
+        "caption": "Progress Tracking",
+        "detail": "Practice and test history"
+      },
+      {
+        "src": "/assets/drivicon/drivicon-6.png",
+        "alt": "Drivicon language selection screen with more than ten supported languages",
+        "caption": "Language Selection",
+        "detail": "More than ten languages"
+      },
+      {
+        "src": "/assets/drivicon/drivicon-7.png",
+        "alt": "Drivicon road and traffic sign reference screen",
+        "caption": "Road Sign Reference",
+        "detail": "Offline learning material"
+      }
+    ],
+    "tags": ["Flutter", "Dart", "SQLite", "Sentry", "iOS", "Android", "Cross platform"]
+  }
+]
