@@ -3,6 +3,7 @@ import { CirclePlay, Images } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Footer, { Divider } from '../components/Footer'
 import projects from '../data/projects.json'
+import publicUrl from '../utils/publicUrl'
 
 const orderedProjects = [...projects].sort((first, second) => first.order - second.order)
 const projectFilters = ['all', 'professional', 'personal']
@@ -22,8 +23,20 @@ export default function HomePage() {
     <main className="page home-page">
       <div className="content-column">
         <header className="site-header">
-          <h1 className="site-title">John Gaina</h1>
-          <p className="site-subtitle">Senior Software Engineer</p>
+          <a
+            className="profile-link"
+            href="https://linkedin.com/in/johngaina"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="John Gaina on LinkedIn"
+            title="LinkedIn profile"
+          >
+            <img className="profile-photo" src={publicUrl('/assets/john-gaina.png')} alt="" />
+          </a>
+          <div className="site-heading">
+            <h1 className="site-title">John Gaina</h1>
+            <p className="site-subtitle">Senior Software Engineer</p>
+          </div>
         </header>
 
         <section className="intro" aria-label="Introduction">
