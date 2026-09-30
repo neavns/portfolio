@@ -14,7 +14,7 @@ I wanted the experience to work without relying on an internet connection or tra
 
 Drivicon doesn’t depend on a translation API or remote content service during normal use.
 
-Questions, answers, explanations, translations and supporting assets are bundled with the application and loaded into a local SQLite database. User preferences and lightweight application state are persisted separately using SharedPreferences.
+Questions, answers, explanations, translations and supporting content are bundled with the application. In the original implementation, the structured content was stored as JSON and imported into a local SQLite database on first launch. User preferences and lightweight application state are persisted separately using SharedPreferences.
 
 There were a few reasons for this.
 
@@ -34,7 +34,7 @@ Instead, I kept the English content canonical.
 
 Questions, answers, explanations and categories are stored normally, while translations live in a shared table identified by:
 
-entity → entity type → language → translated value
+`entity → entity type → language → translated value`
 
 Repository queries join the canonical records with their translations and use fallbacks when a translation isn’t available.
 
@@ -42,11 +42,11 @@ That means the same question can be requested in different languages without mai
 
 More importantly, adding another language doesn’t require changing the application’s underlying content model.
 
-## :snail: The 117-second first launch
+## The 117-second first launch
 
 The biggest performance problem appeared during database initialization.
 
-On first launch, Drivicon takes its bundled dataset and seeds the local SQLite database.
+On first launch, Drivicon read its bundled JSON dataset, normalized the content and seeded the local SQLite database.
 
 My initial implementation inserted the data largely row by row.
 
@@ -56,9 +56,9 @@ On Android, in debug builds, it took as long as 117 seconds.
 
 A two-minute first launch clearly wasn’t acceptable.
 
-Rather than treating Android itself as the problem, I looked at what the application was asking SQLite to do.
+Rather than treating Android itself as the problem, I looked at what the application was actually doing during initialization.
 
-There were thousands of related records — categories, questions, answers, explanations and their translations — and the initialization path was paying the cost of a large number of individual database operations.
+There were thousands of related records — categories, questions, answers, explanations and their translations. The application had to parse and transform the source data before paying the additional cost of a large number of individual database operations.
 
 I progressively changed the ingestion strategy.
 
@@ -70,12 +70,14 @@ I then changed translation ingestion to use multi-row SQL inserts, reducing the 
 
 The result:
 
-Android: ~117s → ~27s
-iOS: ~3s → ~1s
+- Android: ~117s → ~27s
+- iOS: ~3s → ~1s
 
 These measurements were taken in debug mode, so they weren’t intended as release-build benchmarks. What mattered was the relative improvement: the same dataset and development environment became dramatically faster after changing how I interacted with the database.
 
 It was a useful lesson in performance work: sometimes the algorithm isn’t the bottleneck — the number and shape of I/O operations are.
+
+**It also exposed a broader architectural question that I only fully appreciated afterwards: if the dataset is known before the application is built, why perform the transformation and database construction on the user’s device at all?**
 
 ## Keeping application state manageable
 
@@ -111,13 +113,29 @@ Most of it was also built before AI-assisted coding became part of my workflow, 
 
 ## What I’d change today
 
-The initialization work improved performance substantially, but 27 seconds in an Android debug build still deserves attention.
+The initialization optimizations improved performance substantially, but looking back, I was optimizing a piece of work that probably shouldn’t have been happening on the user’s device in the first place.
 
-Rather than continuing to optimize runtime seeding indefinitely, I’d question whether the application needs to construct the database on the user’s device at all.
+Drivicon’s question bank and translations are largely static and are already known when a version of the application is built. Instead of shipping the source JSON and turning it into a database on first launch, I would move that transformation into the build/content pipeline.
 
-One option I’d investigate is building the SQLite database ahead of time and shipping the prepared database with the application, particularly if the underlying question bank remains mostly static. That could move much of the initialization cost from the user’s device into the build/content pipeline.
+The source content could remain JSON because it is convenient to generate, inspect and maintain. A build-time script would validate and normalize that content, populate the SQLite schema, build the required indexes and produce a ready-to-use `drivicon.db`.
 
-I’d also revisit the raw multi-row SQL construction. It improved performance, but parameterized/batched operations would provide a safer boundary around arbitrary content and make escaping less fragile.
+The application would then ship `drivicon.db` as an asset.
+
+On first launch, instead of:
+
+`JSON → parse → normalize → thousands of inserts → build SQLite database`
+
+the application would effectively do:
+
+`bundled drivicon.db → copy to writable storage → open database`
+
+This moves the expensive and deterministic work from runtime to build time. It should make first launch substantially faster and, just as importantly, remove a large amount of initialization logic from the mobile application.
+
+It would also give the content pipeline a stronger validation boundary. Missing translations, invalid relationships, duplicate identifiers or other content problems could be detected while producing drivicon.db, rather than while initializing the database on a user’s device.
+
+If the content eventually needed to change independently of application releases, I’d evolve the same design rather than immediately abandoning it: ship a baseline database with the app and introduce versioned database or content updates separately.
+
+With that approach, the raw multi-row SQL optimization I introduced at runtime would no longer be necessary in the application itself. Bulk inserts and transactions would still be useful, but they would belong in the build-time database generator, where performance work doesn’t affect application startup.
 
 The project reinforced a principle that has appeared repeatedly in my work since: the simplest architecture is only simple if it also works under real constraints.
 

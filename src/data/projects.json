@@ -29,7 +29,7 @@
     "description": "An internal automation service that coordinates Jira release tickets, merge requests, deployment metadata, and tagged GitLab releases through a guided Slack workflow.",
     "markdown": "/content/projects/release-automator.md",
     "images": [],
-    "tags": ["Node.js", "Slack API", "GitLab", "Jira", "Dynatrace"]
+    "tags": ["Node.js", "Slack API", "Internal Tooling", "Automation", "GitLab", "Jira", "Dynatrace"]
   },
   {
     "name": "incentives",
@@ -41,7 +41,7 @@
     "description": "A platform for managing incentive campaigns, allocating rewards, tracking outcomes, and running experiments across targeting models and incentive values.",
     "markdown": "/content/projects/incentives.md",
     "images": [],
-    "tags": [".NET", "MongoDB", "Kafka", "A/B Testing"]
+    "tags": [".NET", "MongoDB", "A/B Testing"]
   },
   {
     "name": "recommendations",
@@ -97,7 +97,7 @@
       "title": "Nocturn product demo",
       "caption": "Generating, exploring, refining, and sharing a night-out itinerary."
     },
-    "tags": ["AI", "React", "Vite", "Node.js", "Express", "Supabase", "pgvector", "LLMs"]
+    "tags": ["Personal","AI", "React", "Node.js", "Express", "Supabase", "PostgreSQL", "LLMs"]
   },
   {
     "name": "drivicon",
@@ -152,6 +152,6 @@
         "detail": "Offline learning material"
       }
     ],
-    "tags": ["Flutter", "Dart", "SQLite", "Sentry", "iOS", "Android", "Cross platform"]
+    "tags": ["Personal", "Flutter", "Dart", "SQLite", "Sentry", "iOS", "Android", "Cross platform"]
   }
 ]

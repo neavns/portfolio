@@ -1,6 +1,6 @@
 # Taking an Internal Tool from One Team to ~75% Adoption
 
-## The problem 
+## The problem
 
 Releasing software involved a surprising amount of administration.
 
@@ -52,17 +52,19 @@ Building the automation was only part of the problem.
 
 An internal tool creates very little value if engineers don’t use it.
 
-I focused heavily on making onboarding simple and used a Dynatrace dashboard to monitor adoption, usage and failures.
+Alongside the service, I built a Dynatrace observability dashboard to track usage, adoption and failures. This gave me visibility into which teams were using Release Automator, how frequently it was being used and whether releases were completing successfully.
+
+That became particularly useful as adoption increased. Rather than relying only on user feedback, I could see how the tool was being used across engineering and identify failures or areas of friction.
 
 After releasing the rebuilt version, I shared it with the existing Release Automator community. Adoption accelerated significantly.
 
-It eventually grew to the point where around 75% of engineering teams were using it regularly, and senior managers started promoting it internally
+It eventually grew to the point where around 75% of engineering teams were using it regularly, with senior managers also beginning to promote it internally.
 
 I started receiving messages from engineers and managers about the time it was saving them, as well as public recognition from senior managers and directors.
 
 Nobody had assigned the project to me, and I remained its sole developer while continuing my normal product work.
 
-## The bigger opportunity
+The bigger opportunity
 
 Release Automator stopped short of the part I ultimately wanted to automate: the deployment itself.
 
@@ -72,10 +74,14 @@ I designed the workflow, created architecture diagrams and discussed the idea wi
 
 It wasn’t implemented while I owned the project, so I don’t count it as part of the system’s impact. But it represented the natural next step: moving from automating the administration around a release toward orchestrating the release itself.
 
-## Outcome
+Outcome
 
-Release Automator grew from a side project used by one team into tooling used daily by roughly three quarters of engineering teams.
+Release Automator grew from a side project used by one team into tooling used regularly by roughly three quarters of engineering teams.
 
-Each automated release removed approximately 10–20 minutes of repetitive work. I don’t have a reliable aggregate figure for total engineering hours saved, so I wouldn’t turn that into a headline number, but at the organization’s release frequency the repeated saving was meaningful.
+The observability dashboard also gave me a way to quantify that usage. In one of the last months I measured, Release Automator handled around 400 releases.
+
+I estimated that the manual process it replaced typically took an engineer around 10–20 minutes per release. At that volume, that represents approximately **67–133** hours of repetitive engineering work avoided in a single month, or roughly 100 hours using the midpoint of that estimate.
+
+Those numbers are estimates rather than a direct measurement of engineering time saved, but they helped put the scale of the automation into perspective: something that began as a side project for one team had become part of the regular release workflow across much of engineering.
 
 More importantly, the project showed me something about internal platforms: the hard part isn’t always building the automation. It’s making the easiest path the automated one.
