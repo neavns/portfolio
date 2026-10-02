@@ -62,6 +62,6 @@ As the system evolved, the business could test different incentive values and ta
 
 The biggest opportunity would have been to continue reducing the operational work surrounding the core decision engine.
 
-The targeting itself had become increasingly sophisticated through ML models, but parts of the surrounding lifecycle — campaign management and fulfilment in particular — still relied on humans.
+The targeting itself had become increasingly sophisticated through ML models, but parts of the surrounding lifecycle — campaign management and fulfillment in particular — still relied on humans.
 
 I’d continue moving those workflows toward self-service and automation, while keeping humans able to inspect and intervene when necessary.

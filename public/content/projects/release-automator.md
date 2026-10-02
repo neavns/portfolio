@@ -64,7 +64,7 @@ I started receiving messages from engineers and managers about the time it was s
 
 Nobody had assigned the project to me, and I remained its sole developer while continuing my normal product work.
 
-The bigger opportunity
+## The bigger opportunity
 
 Release Automator stopped short of the part I ultimately wanted to automate: the deployment itself.
 
@@ -74,7 +74,7 @@ I designed the workflow, created architecture diagrams and discussed the idea wi
 
 It wasn’t implemented while I owned the project, so I don’t count it as part of the system’s impact. But it represented the natural next step: moving from automating the administration around a release toward orchestrating the release itself.
 
-Outcome
+## Outcome
 
 Release Automator grew from a side project used by one team into tooling used regularly by roughly three quarters of engineering teams.
 
